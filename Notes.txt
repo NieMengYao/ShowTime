@@ -1,0 +1,54 @@
+1.要显示星期，需要先定义一个数组，然后再获得
+	var weekday=new Array(7);
+		weekday[0]="星期日";
+		weekday[1]="星期一";
+		weekday[2]="星期二";
+		weekday[3]="星期三";
+		weekday[4]="星期四";
+		weekday[5]="星期五";
+		weekday[6]="星期六";
+		weekday[myDate.getDay()]    myDate是获得系统当前日期的变量
+
+2.因为月份是从0到11，所以想要获得当前的月份，是需要加一的。
+  var month=myDate.getMonth()+1;     这样才是正确的当前月份
+
+3.为了防止当数字小于10的时候页面值显示一位数字，那么可以用三元运算来给它前面加0.
+ 		var h=myDate.getHours();
+		var m=myDate.getMinutes();
+		var s=myDate.getSeconds();
+		s=s<=9?"0"+s:s;   						这就是三元运算，意思是M变量 M<=9?是一个表达式 "0"+M是值1    
+		m=m<=9?"0"+m:m;	  						：后面的M是值2，意思就是M变量的表达式成立就执行：前面的值1，否则执行值2
+		h=h<=9?"0"+h:h;
+		date=date<=9?"0"+date:date;
+		month+month<=9?"0"+month:month;
+
+4.样让页面自动刷新显示时间，还需要用到定时器setInterval(function,1000)
+5.要让获得的事件在指定的div显示出来，还需要先获得那个div然后再用innerHTML=就可以了
+		<div id="showtime"></div>
+		document.getElementById("showtime").innerHTML=year+"年"+month+"月"+date+"日"。。
+
+6.获得倒计时时间可以用结束日期减去当前日期。
+	getTime() 方法可返回距 1970 年 1 月 1 日之间的毫秒数，
+	得到结束日期与当前日期的毫秒数，然后除以一天的毫秒数24*60*60*1000就可以得到还有多少天
+	然后再用向上取整Math.ceil()来取得整数
+	var currentTime=new Date();
+		var endTime=new Date("2017,6,6");
+		var leftTime=Math.ceil((endTime.getTime()-currentTime.getTime())/(24*60*60*1000));
+		// alert(leftTime);
+		document.getElementById("showtime").innerHTML=leftTime;
+
+7.限时抢购时间的显示。
+	function showTime(){
+		var currentTime=new Date();   			得到当前日期时间；
+		var endTime=new Date("2016/12/28,12:00:00");		设置结束的日期时间；
+		var lefttime=parseInt((endTime.getTime()-currentTime.getTime())/1000);  用结束日期的秒数减去当前日期的秒数再除以1000毫秒得到剩余秒数
+		var day=parseInt(lefttime/(24*60*60));		用剩余秒数除以一天的秒数就得到还剩几天，要用parseInt来将字符串转化取整
+		var hour=parseInt(lefttime/(60*60)%24);		同上，除以24是因为一天有24小时
+		var minutes=parseInt(lefttime/60%60);		注意：在/后面是一个整体的一定要用（）包上
+		var second=parseInt((lefttime%60));			%是取余数的意思，就是除去60之后去余数
+		document.getElementById("showtime").innerHTML=day+"天"+hour+"时"+minutes+"分"+second+"秒"
+		
+		}setInterval(showTime,1000);
+
+8.parseInt() 函数可解析一个字符串，并返回一个整数
+
