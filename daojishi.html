@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>高考倒计时</title>
+	<script type="text/javascript">
+	window.onload=function(){
+		var currentTime=new Date();
+		var endTime=new Date("2017,6,6,");
+		var leftTime=Math.ceil((endTime.getTime()-currentTime.getTime())/(24*60*60*1000));
+		
+
+		// alert(leftTime);
+		document.getElementById("showtime").innerHTML=leftTime+"天";
+
+
+	}
+
+
+
+	</script>
+</head>
+<body>
+
+		<p>
+			距离高考还有：<div id="showtime">20</div>
+			
+		</p>
+</body>
+</html>

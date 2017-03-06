@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>展示系统时间</title>
+	<style type="text/css">
+	#showtime{
+		border: 2px solid red;
+		height: 40px;
+		width: 50%;
+		margin: 40px auto;
+		line-height: 40px;
+	}
+	</style>
+
+	<script type="text/javascript">
+	window.onload=function (){
+
+		function showTime(){
+		var myDate=new Date();
+		// alert(myDate);
+		var year=myDate.getFullYear();
+		var month=myDate.getMonth()+1;
+		var date=myDate.getDate();
+		// alert(year+":"+month+":"+date);
+		var weekday=new Array(7);
+		weekday[0]="星期日";
+		weekday[1]="星期一";
+		weekday[2]="星期二";
+		weekday[3]="星期三";
+		weekday[4]="星期四";
+		weekday[5]="星期五";
+		weekday[6]="星期六";
+		// var day=myDate.getDay();
+		// alert(day);
+		var h=myDate.getHours();
+		var m=myDate.getMinutes();
+		var s=myDate.getSeconds();
+		s=s<=9?"0"+s:s;
+		m=m<=9?"0"+m:m;
+		h=h<=9?"0"+h:h;
+		date=date<=9?"0"+date:date;
+		month+month<=9?"0"+month:month;
+
+
+
+		document.getElementById("showtime").innerHTML=year+"年"+month+"月"+date+"日"+" "+weekday[myDate.getDay()]+h+":"+m+":"+s;
+	}setInterval(showTime,1000);
+	
+
+	}
+	
+
+	</script>
+</head>
+<body>
+	<div id="showtime"></div>
+</body>
+</html>
